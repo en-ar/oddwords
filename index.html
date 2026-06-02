@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مفتاح النطق — كلمات تُحفظ</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg:#F7F7F5; --surface:#FFFFFF; --text:#4A4A4A; --text-muted:#8A8A8A;
+  --accent:#A8BFC9; --accent-dark:#8AAAB8; --accent-pale:#EBF2F5;
+  --green:#B7C9B0; --green-pale:#EEF3EC;
+  --peach:#F3D6C6; --peach-pale:#FDF4EF;
+  --yellow:#F6E7B4; --yellow-pale:#FDFAEE;
+  --border:#EFEAE4;
+}
+html,body { background:var(--bg); font-family:'Tajawal',sans-serif; color:var(--text); min-height:100%; }
+.page { max-width:480px; margin:0 auto; padding-bottom:60px; }
+.topbar { position:sticky; top:0; z-index:10; background:var(--bg);
+  border-bottom:1px solid var(--border); padding:13px 20px 11px;
+  display:flex; align-items:center; gap:12px; }
+.topbar-deco { position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg,var(--yellow),var(--green),var(--accent),var(--peach)); }
+.topbar-title { font-size:14px; font-weight:700; color:var(--text); }
+.topbar-sub   { font-size:10px; color:var(--text-muted); }
+.hero { background:var(--yellow-pale); border-bottom:1px solid var(--border);
+  padding:22px 22px 20px; display:flex; align-items:center; gap:16px; }
+.hero-icon { width:56px; height:56px; background:var(--surface); border-radius:16px;
+  display:flex; align-items:center; justify-content:center; border:1px solid var(--border); flex-shrink:0; }
+.hero-text h1 { font-size:1.2rem; font-weight:800; color:var(--text); margin-bottom:4px; }
+.hero-text p  { font-size:12px; color:var(--text-muted); line-height:1.7; }
+.hero-badge { display:inline-block; margin-top:8px; background:var(--yellow);
+  border-radius:20px; padding:3px 12px; font-size:11px; font-weight:700; color:#8A6A00; }
+.gift-banner { margin:16px 20px 0; background:linear-gradient(135deg,var(--green-pale),var(--accent-pale));
+  border:1px solid var(--border); border-radius:16px; padding:14px 16px;
+  display:flex; align-items:center; gap:12px; }
+.gift-icon { width:40px; height:40px; flex-shrink:0; background:var(--surface);
+  border-radius:12px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); }
+.gift-text { font-size:12px; color:var(--text); line-height:1.7; }
+.gift-text strong { color:var(--accent-dark); }
+.stats-row { display:flex; gap:10px; margin:16px 20px 0; }
+.stat-box { flex:1; background:var(--surface); border:1px solid var(--border);
+  border-radius:14px; padding:12px; text-align:center; }
+.stat-n { font-size:1.4rem; font-weight:800; color:var(--accent-dark); }
+.stat-l { font-size:10px; color:var(--text-muted); margin-top:2px; }
+.content { padding:16px 20px 0; }
+.cat-label { display:flex; align-items:center; gap:8px; padding:18px 0 10px; }
+.cat-line { flex:1; height:1px; background:var(--border); }
+.cat-text { font-size:11px; font-weight:800; color:var(--text-muted);
+  letter-spacing:.5px; white-space:nowrap; background:var(--bg); padding:0 8px; }
+.cat-dot { width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+.word-card { background:var(--surface); border:1px solid var(--border);
+  border-radius:16px; margin-bottom:10px; overflow:hidden; animation:fadeUp .35s ease both; }
+.wc-top { padding:14px 16px 12px; display:flex; align-items:flex-start; gap:12px; }
+.wc-num { width:26px; height:26px; border-radius:8px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:10px; font-weight:800; color:white; background:var(--accent-dark); }
+.wc-body { flex:1; }
+.wc-en { font-size:1.1rem; font-weight:800; color:var(--text); direction:ltr; text-align:left; margin-bottom:5px; }
+.wc-ar { font-size:13px; font-weight:700; color:var(--accent-dark); margin-bottom:5px; }
+.wc-explain { display:inline-flex; align-items:center; background:var(--peach-pale);
+  border-radius:8px; padding:3px 10px; font-size:11px; color:#C49070; font-weight:600; margin-top:2px; }
+.wc-actions { padding:0 16px 12px; }
+.btn-listen { display:inline-flex; align-items:center; gap:6px;
+  background:var(--accent-pale); border:1px solid rgba(168,191,201,.3);
+  border-radius:10px; padding:7px 14px; cursor:pointer;
+  font-family:'Tajawal',sans-serif; font-size:12px; font-weight:700; color:var(--accent-dark); transition:all .18s; }
+.btn-listen:hover { background:var(--accent); color:white; }
+.btn-listen.playing { background:var(--accent); color:white; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+/* Toggle Arabic */
+.toggle-ar-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: white; border: none; border-radius: 20px;
+  padding: 6px 13px; cursor: pointer;
+  font-family: 'Tajawal', sans-serif;
+  font-size: 12px; font-weight: 700; color: var(--accent-dark);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  transition: all .18s; white-space: nowrap;
+}
+.toggle-ar-btn:hover { background: var(--accent-pale); }
+.toggle-ar-btn.active { background: var(--accent); color: white; }
+.arabic-hidden .wc-ar { display: none !important; }
+
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="topbar">
+    <div class="topbar-deco"></div>
+    <div><div class="topbar-title">كلمات تُحفظ</div><div class="topbar-sub">هدية لك من مفتاح النطق</div></div>
+  </div>
+  <div class="hero">
+    <div class="hero-icon">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="10" cy="10" r="5.5" stroke="#C4A840" stroke-width="1.9"/>
+        <circle cx="10" cy="10" r="2" fill="#F6E7B4"/>
+        <line x1="14.5" y1="14.5" x2="24" y2="24" stroke="#C4A840" stroke-width="1.9" stroke-linecap="round"/>
+        <line x1="20.5" y1="22.5" x2="22.5" y2="20.5" stroke="#C4A840" stroke-width="1.7" stroke-linecap="round"/>
+        <line x1="22.5" y1="24.5" x2="24.5" y2="22.5" stroke="#C4A840" stroke-width="1.7" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="hero-text">
+      <h1>كلمات ما لها قاعدة</h1>
+      <p>هذه الكلمات شاذة تماماً — الحل الوحيد هو الحفظ</p>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:8px;">
+        <div class="hero-badge">٤٥ كلمة</div>
+        <button class="toggle-ar-btn" id="toggleAr" onclick="toggleArabic(this)">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6C1 6 3.2 2 6 2C8.8 2 11 6 11 6C11 6 8.8 10 6 10C3.2 10 1 6 1 6Z" stroke="currentColor" stroke-width="1.3"/><circle cx="6" cy="6" r="1.8" fill="currentColor"/></svg>
+          إخفاء العربي
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box"><div class="stat-n">٤٥</div><div class="stat-l">كلمة شاذة</div></div>
+    <div class="stat-box"><div class="stat-n">نطق</div><div class="stat-l">صوتي</div></div>
+    <div class="stat-box"><div class="stat-n">سبب</div><div class="stat-l">لكل كلمة</div></div>
+  </div>
+  <div class="gift-banner">
+    <div class="gift-icon">
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+        <rect x="2" y="8" width="18" height="12" rx="2" stroke="#6A9B60" stroke-width="1.5"/>
+        <line x1="11" y1="8" x2="11" y2="20" stroke="#6A9B60" stroke-width="1.5"/>
+        <path d="M11 8C11 8 8 6 8 4C8 3 9 2 11 4C13 2 14 3 14 4C14 6 11 8 11 8Z" stroke="#6A9B60" stroke-width="1.4" fill="#EEF3EC"/>
+        <line x1="2" y1="11" x2="20" y2="11" stroke="#B7C9B0" stroke-width="1.3"/>
+      </svg>
+    </div>
+    <div class="gift-text">هدية <strong>مجانية</strong> لكل من اشترى مفتاح النطق</div>
+  </div>
+  <div class="content">
+
+    <div class="cat-label"><div class="cat-dot" style="background:var(--peach);"></div><div class="cat-text">حروف صامتة غير متوقعة</div><div class="cat-line"></div></div>
+
+    <div class="word-card" style="animation-delay:.05s"><div class="wc-top"><div class="wc-num">١</div><div class="wc-body"><div class="wc-en">colonel</div><div class="wc-ar">كِرنِل</div><div class="wc-explain">تُنطق بشكل مختلف تماماً عن كتابتها</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('colonel',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.08s"><div class="wc-top"><div class="wc-num">٢</div><div class="wc-body"><div class="wc-en">sword</div><div class="wc-ar">سورد</div><div class="wc-explain">W صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('sword',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.11s"><div class="wc-top"><div class="wc-num">٣</div><div class="wc-body"><div class="wc-en">answer</div><div class="wc-ar">أنسِر</div><div class="wc-explain">W صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('answer',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.14s"><div class="wc-top"><div class="wc-num">٤</div><div class="wc-body"><div class="wc-en">mortgage</div><div class="wc-ar">مورقِج</div><div class="wc-explain">T صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('mortgage',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.17s"><div class="wc-top"><div class="wc-num">٥</div><div class="wc-body"><div class="wc-en">muscle</div><div class="wc-ar">مَسِل</div><div class="wc-explain">C صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('muscle',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.20s"><div class="wc-top"><div class="wc-num">٦</div><div class="wc-body"><div class="wc-en">indict</div><div class="wc-ar">إندايت</div><div class="wc-explain">C صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('indict',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.23s"><div class="wc-top"><div class="wc-num">٧</div><div class="wc-body"><div class="wc-en">subtle</div><div class="wc-ar">سَبِل</div><div class="wc-explain">B صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('subtle',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.26s"><div class="wc-top"><div class="wc-num">٨</div><div class="wc-body"><div class="wc-en">raspberry</div><div class="wc-ar">رازبِري</div><div class="wc-explain">P صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('raspberry',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.29s"><div class="wc-top"><div class="wc-num">٩</div><div class="wc-body"><div class="wc-en">heir</div><div class="wc-ar">إير</div><div class="wc-explain">H صامتة تماماً</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('heir',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.32s"><div class="wc-top"><div class="wc-num">١٠</div><div class="wc-body"><div class="wc-en">aisle</div><div class="wc-ar">آيل</div><div class="wc-explain">S صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('aisle',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.35s"><div class="wc-top"><div class="wc-num">١١</div><div class="wc-body"><div class="wc-en">soldier</div><div class="wc-ar">سولجر</div><div class="wc-explain">dier تنطق جر وليس دير</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('soldier',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.38s"><div class="wc-top"><div class="wc-num">١٢</div><div class="wc-body"><div class="wc-en">Leicester</div><div class="wc-ar">لِستِر</div><div class="wc-explain">نصف الكلمة صامت</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('Leicester',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="cat-label"><div class="cat-dot" style="background:var(--accent);"></div><div class="cat-text">أيام وأشهر شاذة</div><div class="cat-line"></div></div>
+
+    <div class="word-card" style="animation-delay:.41s"><div class="wc-top"><div class="wc-num">١٣</div><div class="wc-body"><div class="wc-en">Wednesday</div><div class="wc-ar">وِنزداي</div><div class="wc-explain">D الأولى صامتة تماماً</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('Wednesday',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.44s"><div class="wc-top"><div class="wc-num">١٤</div><div class="wc-body"><div class="wc-en">February</div><div class="wc-ar">فِبروري</div><div class="wc-explain">R الأولى تختفي في النطق</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('February',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="cat-label"><div class="cat-dot" style="background:var(--yellow);"></div><div class="cat-text">حروف متحركة شاذة</div><div class="cat-line"></div></div>
+
+    <div class="word-card" style="animation-delay:.47s"><div class="wc-top"><div class="wc-num">١٥</div><div class="wc-body"><div class="wc-en">said</div><div class="wc-ar">سِد</div><div class="wc-explain">ai تنطق إِ وليس أي</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('said',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.50s"><div class="wc-top"><div class="wc-num">١٦</div><div class="wc-body"><div class="wc-en">says</div><div class="wc-ar">سِز</div><div class="wc-explain">ay تنطق إِ وليس أي</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('says',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.53s"><div class="wc-top"><div class="wc-num">١٧</div><div class="wc-body"><div class="wc-en">women</div><div class="wc-ar">وِمِن</div><div class="wc-explain">o تنطق إِ</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('women',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.56s"><div class="wc-top"><div class="wc-num">١٨</div><div class="wc-body"><div class="wc-en">busy</div><div class="wc-ar">بِزي</div><div class="wc-explain">u تنطق إِ</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('busy',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.59s"><div class="wc-top"><div class="wc-num">١٩</div><div class="wc-body"><div class="wc-en">bury</div><div class="wc-ar">بِري</div><div class="wc-explain">u تنطق إِ</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('bury',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.62s"><div class="wc-top"><div class="wc-num">٢٠</div><div class="wc-body"><div class="wc-en">blood</div><div class="wc-ar">بلَد</div><div class="wc-explain">oo تنطق أَ وليس أوو</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('blood',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.65s"><div class="wc-top"><div class="wc-num">٢١</div><div class="wc-body"><div class="wc-en">flood</div><div class="wc-ar">فلَد</div><div class="wc-explain">oo تنطق أَ وليس أوو</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('flood',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.68s"><div class="wc-top"><div class="wc-num">٢٢</div><div class="wc-body"><div class="wc-en">shoe</div><div class="wc-ar">شو</div><div class="wc-explain">oe تنطق و طويلة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('shoe',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.71s"><div class="wc-top"><div class="wc-num">٢٣</div><div class="wc-body"><div class="wc-en">does</div><div class="wc-ar">دَز</div><div class="wc-explain">oe تنطق أَ — مختلف عن do</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('does',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.74s"><div class="wc-top"><div class="wc-num">٢٤</div><div class="wc-body"><div class="wc-en">two</div><div class="wc-ar">تو</div><div class="wc-explain">W صامتة و tw تنطق ت</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('two',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.77s"><div class="wc-top"><div class="wc-num">٢٥</div><div class="wc-body"><div class="wc-en">once</div><div class="wc-ar">وَنس</div><div class="wc-explain">on تنطق وَ — ليست أون</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('once',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.80s"><div class="wc-top"><div class="wc-num">٢٦</div><div class="wc-body"><div class="wc-en">leopard</div><div class="wc-ar">لِبِرد</div><div class="wc-explain">eo تنطق إِ</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('leopard',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.83s"><div class="wc-top"><div class="wc-num">٢٧</div><div class="wc-body"><div class="wc-en">jeopardy</div><div class="wc-ar">جِبِردي</div><div class="wc-explain">eo تنطق إِ</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('jeopardy',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.86s"><div class="wc-top"><div class="wc-num">٢٨</div><div class="wc-body"><div class="wc-en">people</div><div class="wc-ar">بيبِل</div><div class="wc-explain">eo تنطق إي</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('people',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.89s"><div class="wc-top"><div class="wc-num">٢٩</div><div class="wc-body"><div class="wc-en">lose</div><div class="wc-ar">لوز</div><div class="wc-explain">o تنطق أو طويل</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('lose',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.92s"><div class="wc-top"><div class="wc-num">٣٠</div><div class="wc-body"><div class="wc-en">broad</div><div class="wc-ar">برود</div><div class="wc-explain">oa تنطق أو مدّ</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('broad',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="cat-label"><div class="cat-dot" style="background:var(--green);"></div><div class="cat-text">كلمات فرنسية الأصل</div><div class="cat-line"></div></div>
+
+    <div class="word-card" style="animation-delay:.95s"><div class="wc-top"><div class="wc-num">٣١</div><div class="wc-body"><div class="wc-en">yacht</div><div class="wc-ar">يات</div><div class="wc-explain">ch وa صامتتان</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('yacht',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:.98s"><div class="wc-top"><div class="wc-num">٣٢</div><div class="wc-body"><div class="wc-en">bureau</div><div class="wc-ar">بيورو</div><div class="wc-explain">eau تنطق يو</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('bureau',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:1.01s"><div class="wc-top"><div class="wc-num">٣٣</div><div class="wc-body"><div class="wc-en">beautiful</div><div class="wc-ar">بيوتِفِل</div><div class="wc-explain">eau تنطق يو</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('beautiful',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:1.04s"><div class="wc-top"><div class="wc-num">٣٤</div><div class="wc-body"><div class="wc-en">bologna</div><div class="wc-ar">بلوني</div><div class="wc-explain">gn وآخر a صامتتان</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('bologna',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="cat-label"><div class="cat-dot" style="background:var(--peach);"></div><div class="cat-text">متنوعة — كل واحدة بقصتها</div><div class="cat-line"></div></div>
+
+    <div class="word-card" style="animation-delay:1.07s"><div class="wc-top"><div class="wc-num">٣٥</div><div class="wc-body"><div class="wc-en">queue</div><div class="wc-ar">كيو</div><div class="wc-explain">ueue كلها صامتة — تنطق ك فقط</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('queue',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:1.10s"><div class="wc-top"><div class="wc-num">٣٦</div><div class="wc-body"><div class="wc-en">quay</div><div class="wc-ar">كي</div><div class="wc-explain">uay كلها صامتة — تنطق ك فقط</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('quay',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:1.13s"><div class="wc-top"><div class="wc-num">٣٧</div><div class="wc-body"><div class="wc-en">iron</div><div class="wc-ar">آيِرن</div><div class="wc-explain">o تكاد تكون صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('iron',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:1.16s"><div class="wc-top"><div class="wc-num">٣٨</div><div class="wc-body"><div class="wc-en">gauge</div><div class="wc-ar">قيج</div><div class="wc-explain">au تنطق أي</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('gauge',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:1.19s"><div class="wc-top"><div class="wc-num">٣٩</div><div class="wc-body"><div class="wc-en">lieutenant</div><div class="wc-ar">لِفتِنِنت</div><div class="wc-explain">eu تنطق إِف في البريطانية</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('lieutenant',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:1.22s"><div class="wc-top"><div class="wc-num">٤٠</div><div class="wc-body"><div class="wc-en">toward</div><div class="wc-ar">توورد</div><div class="wc-explain">w تكاد تكون صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('toward',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:1.25s"><div class="wc-top"><div class="wc-num">٤١</div><div class="wc-body"><div class="wc-en">doubt</div><div class="wc-ar">داوت</div><div class="wc-explain">B صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('doubt',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:1.28s"><div class="wc-top"><div class="wc-num">٤٢</div><div class="wc-body"><div class="wc-en">victuals</div><div class="wc-ar">ڤِتِلز</div><div class="wc-explain">c وu صامتتان</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('victuals',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:1.31s"><div class="wc-top"><div class="wc-num">٤٣</div><div class="wc-body"><div class="wc-en">dumb</div><div class="wc-ar">دَم</div><div class="wc-explain">B صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('dumb',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:1.34s"><div class="wc-top"><div class="wc-num">٤٤</div><div class="wc-body"><div class="wc-en">numb</div><div class="wc-ar">نَم</div><div class="wc-explain">B صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('numb',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+    <div class="word-card" style="animation-delay:1.37s"><div class="wc-top"><div class="wc-num">٤٥</div><div class="wc-body"><div class="wc-en">thumb</div><div class="wc-ar">ثَم</div><div class="wc-explain">B صامتة</div></div></div><div class="wc-actions"><button class="btn-listen" onclick="sp('thumb',this)"><svg width="12" height="12" viewBox="0 0 12 12" fill="none"><polygon points="2,1 10,6 2,11" stroke="currentColor" stroke-width="1.2" fill="currentColor" fill-opacity=".5"/></svg>استمع</button></div></div>
+
+  </div>
+</div>
+<script>
+
+function toggleArabic(btn) {
+  const hidden = document.body.classList.toggle('arabic-hidden');
+  btn.classList.toggle('active', hidden);
+  btn.innerHTML = hidden
+    ? '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 2L11 10M3.5 3C2 4 1 6 1 6C1 6 3.2 10 6 10C7.2 10 8.2 9.5 9 8.8" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M6 2C8.8 2 11 6 11 6C11 6 10.5 6.8 9.8 7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg> إظهار العربي'
+    : '<svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M1 6C1 6 3.2 2 6 2C8.8 2 11 6 11 6C11 6 8.8 10 6 10C3.2 10 1 6 1 6Z" stroke="currentColor" stroke-width="1.3"/><circle cx="6" cy="6" r="1.8" fill="currentColor"/></svg> إخفاء العربي';
+}
+
+function sp(word,btn){
+  window.speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(word);
+  u.lang='en-US';u.rate=0.82;
+  document.querySelectorAll('.btn-listen').forEach(b=>b.classList.remove('playing'));
+  btn.classList.add('playing');
+  u.onend=()=>btn.classList.remove('playing');
+  window.speechSynthesis.speak(u);
+}
+</script>
+</body>
+</html>
